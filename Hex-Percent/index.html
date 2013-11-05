@@ -1,0 +1,40 @@
+<html>
+<head>
+
+	<script type="text/javascript">
+		// CORE FUNCTION //
+		function transformColour(perc,hex){
+			
+			// Form RGB decimals
+			var hexR = h2d( hex.substr(0,2) );
+			var hexG = h2d( hex.substr(2,2) );
+			var hexB = h2d( hex.substr(4,2) );
+
+			// Reduce by perc
+			var percCalc = 1-(perc/100);
+			var hexRTrans = d2h( hexR*percCalc );
+			var hexGTrans = d2h( hexG*percCalc );
+			var hexBTrans = d2h( hexB*percCalc );
+
+			// Return/Log new hex
+			var result = hexRTrans+hexGTrans+hexBTrans;
+			console.log(result);
+		}
+
+		// HELPERS //
+		function h2d(hex) {
+			return parseInt(hex.toUpperCase(),16);
+		}
+
+		function d2h(dec) {
+			var result = parseInt(dec,10).toString(16).toUpperCase();
+			if( result == "0" ) result = "00"; // Defend again single zeros 
+			return result;
+		}		
+	</script>
+
+</head>
+<body>
+	<a href='#' onclick='transformColour(40,"00CC00");'>Log the change</a>
+</body>
+</html>
